@@ -1,11 +1,19 @@
 import PropTypes from 'prop-types'
 
-export const PostFilter = ({ field }) => {
+export const PostFilter = ({ field, value, onChange }) => {
   return (
     <div>
       <div>
         <label htmlFor={`filter-${field}`}>{field}:</label>
-        <input type='text' name={`filter-${field}`} id={`filter-${field}`} />
+        <input
+          type='text'
+          name={`filter-${field}`}
+          id={`filter-${field}`}
+          value={value}
+          onChange={(e) => {
+            onChange(e.target.value)
+          }}
+        />
       </div>
     </div>
   )
@@ -13,4 +21,6 @@ export const PostFilter = ({ field }) => {
 
 PostFilter.propTypes = {
   field: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired,
 }
